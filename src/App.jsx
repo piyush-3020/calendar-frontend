@@ -7,7 +7,7 @@ import eventsData from "./data/events";
 
 const App = () => {
   const today = dayjs();
-  const [month, setMonth] = useState(today.month() + 1); // 1-12
+  const [month, setMonth] = useState(today.month() + 1);
   const [year, setYear] = useState(today.year());
   const [events, setEvents] = useState(eventsData);
   const [modalDate, setModalDate] = useState(null);
