@@ -7,7 +7,7 @@ import eventsData from "./data/events";
 
 const App = () => {
   const today = dayjs();
-  const [month, setMonth] = useState(today.month() + 1);
+  const [month, setMonth] = useState(today.month() + 1); // 1-12
   const [year, setYear] = useState(today.year());
   const [events, setEvents] = useState(eventsData);
   const [modalDate, setModalDate] = useState(null);
@@ -20,8 +20,26 @@ const App = () => {
   const handleAddEvent = (event) => {
     if (modalDate) {
       const fullEvent = { ...event, date: modalDate };
-      setEvents(prev => [...prev, fullEvent]);
+      setEvents((prev) => [...prev, fullEvent]);
       setModalDate(null);
+    }
+  };
+
+  const handlePrev = () => {
+    if (month === 1) {
+      setMonth(12);
+      setYear((prevYear) => prevYear - 1);
+    } else {
+      setMonth((prevMonth) => prevMonth - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (month === 12) {
+      setMonth(1);
+      setYear((prevYear) => prevYear + 1);
+    } else {
+      setMonth((prevMonth) => prevMonth + 1);
     }
   };
 
@@ -30,8 +48,8 @@ const App = () => {
       <CalendarHeader
         month={month}
         year={year}
-        onPrev={() => setMonth(prev => prev === 1 ? (setYear(y => y - 1), 12) : prev - 1)}
-        onNext={() => setMonth(prev => prev === 12 ? (setYear(y => y + 1), 1) : prev + 1)}
+        onPrev={handlePrev}
+        onNext={handleNext}
         onToday={goToToday}
       />
       <CalendarGrid

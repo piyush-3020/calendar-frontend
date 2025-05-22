@@ -49,7 +49,7 @@ const AddEventModal = ({ date, onClose, onSave }) => {
           <button className="px-4 py-2 bg-gray-200 rounded" onClick={onClose}>
             Cancel
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded" onClick={handleSubmit}>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer" onClick={handleSubmit}>
             Add Event
           </button>
         </div>
